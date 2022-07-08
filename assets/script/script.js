@@ -49,10 +49,10 @@ function clockTicksRotate() {
 clockTicksRotate();
 
 // create a random background color
-const setBg = () => {
-    const randomColor = Math.floor(Math.random() * 16777215).toString(16);
+function setBg() {
+    let randomColor = Math.floor((Math.random() + 0.1) * 16777215).toString(16);
     document.body.style.backgroundColor = "#" + randomColor;
-};
+}
 
 setBg();
 
@@ -62,7 +62,13 @@ function getDate() {
     let month = today.getMonth() + 1;
     let year = today.getFullYear();
 
-    datePlaceholder.innerHTML = `0${day}/0${month}/${year}`;
+    if (day < 10) {
+        datePlaceholder.innerHTML = `0${day}/${month}/${year}`;
+    } else if (month < 10) {
+        datePlaceholder.innerHTML = `${day}/0${month}/${year}`;
+    } else {
+        datePlaceholder.innerHTML = `${day}/${month}/${year}`;
+    }
 }
 
 getDate();
